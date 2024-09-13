@@ -1,7 +1,6 @@
 // TODO:
 // - Error handling
 // - Tests/Benchmark
-// - Github
 
 #include <iostream>
 #include <thread>
