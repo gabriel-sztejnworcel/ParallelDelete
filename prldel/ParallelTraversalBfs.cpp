@@ -86,6 +86,7 @@ void ParallelTraversalBfs::Worker()
         {
             this->ProcessDir(dirQueueEntry.path, dirQueueEntry.level);
             --activeWorkers_;
+            SetEvent(evt_);
         }
         else
         {
@@ -133,7 +134,6 @@ void ParallelTraversalBfs::ProcessDir(const std::wstring& path, int level)
     } while (FindNextFileW(findHandle, &findFileData) != 0);
 
     FindClose(findHandle);
-    SetEvent(evt_); // TODO: Error handling
 }
 
 void ParallelTraversalBfs::AddFileResult(const std::wstring& path, DWORD attributes)
