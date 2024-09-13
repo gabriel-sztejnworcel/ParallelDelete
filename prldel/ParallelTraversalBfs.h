@@ -23,6 +23,7 @@ struct TraverseResult
 {
     std::vector<FileEntry> files;
     std::map<int, std::vector<FileEntry>> dirsByLevel;
+    bool error = false;
 };
 
 class ParallelTraversalBfs

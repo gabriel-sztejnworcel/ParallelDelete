@@ -66,13 +66,18 @@ int wmain(int argc, wchar_t* argv[])
     auto traverseResult =
         parallelTraversalBfs.Traverse(path, nworkers);
 
+    if (traverseResult.error)
+    {
+        return 1;
+    }
+
     ParallelDelete parallelDelete;
     auto deleteResult = parallelDelete.Delete(traverseResult, nworkers, suppressErrors);
 
     wprintf(L"---\nFile(s) deleted: %d, ", deleteResult.filesDeleted);
     wprintf(L"dir(s) deleted: %d\n", deleteResult.dirsDeleted);
     wprintf(L"File(s) failed: %d, ", deleteResult.filesFailed);
-    wprintf(L"dir(s) failed: %d\n\n", deleteResult.dirsFailed);
+    wprintf(L"dir(s) failed: %d\n", deleteResult.dirsFailed);
 
     return 0;
 }

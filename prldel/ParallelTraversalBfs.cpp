@@ -21,8 +21,9 @@ TraverseResult ParallelTraversalBfs::Traverse(const std::wstring& root, int nwor
     DWORD attributes = GetFileAttributesW(root.c_str());
     if (attributes == INVALID_FILE_ATTRIBUTES)
     {
-        // TODO: Error handling
-        return TraverseResult{ std::move(files_), std::move(dirsByLevel_) };
+        wprintf(L"Failed to get file attributes (%s, %d)\n", root.c_str(), GetLastError());
+        bool error = true;
+        return TraverseResult{ {}, {}, error };
     }
 
     if (!(attributes & FILE_ATTRIBUTE_DIRECTORY))
@@ -37,8 +38,9 @@ TraverseResult ParallelTraversalBfs::Traverse(const std::wstring& root, int nwor
 
         if (evt_ == nullptr)
         {
-            wprintf(L"CreateEvent failed (%d)\n", GetLastError());
-            return TraverseResult{ std::move(files_), std::move(dirsByLevel_) };
+            wprintf(L"Failed to create event (%d)\n", GetLastError());
+            bool error = true;
+            return TraverseResult{ {}, {}, error };
         }
     }
 

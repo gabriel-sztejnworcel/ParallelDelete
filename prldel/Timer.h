@@ -16,7 +16,7 @@ public:
         auto end = std::chrono::system_clock::now();
         std::chrono::duration<double> elapsed_seconds = end - start_;
         std::time_t end_time = std::chrono::system_clock::to_time_t(end);
-        wprintf(L"Total elapsed time: %f seconds\n", elapsed_seconds.count());
+        wprintf(L"---\nTotal elapsed time: %f seconds\n", elapsed_seconds.count());
     }
 
 private:
