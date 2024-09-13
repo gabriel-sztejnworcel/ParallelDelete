@@ -7,9 +7,9 @@
 ParallelTraversalBfs::~ParallelTraversalBfs()
 {
     if (evt_ != nullptr)
-	{
-		CloseHandle(evt_);
-	}
+    {
+        CloseHandle(evt_);
+    }
 }
 
 TraverseResult ParallelTraversalBfs::Traverse(const std::wstring& root, int nworkers)
@@ -20,7 +20,7 @@ TraverseResult ParallelTraversalBfs::Traverse(const std::wstring& root, int nwor
 
     DWORD attributes = GetFileAttributesW(root.c_str());
     if (attributes == INVALID_FILE_ATTRIBUTES)
-	{
+    {
         // TODO: Error handling
         return TraverseResult{ std::move(files_), std::move(dirsByLevel_) };
     }
@@ -142,14 +142,14 @@ void ParallelTraversalBfs::AddFileResult(const std::wstring& path, DWORD attribu
 
 void ParallelTraversalBfs::AddDirResult(const std::wstring& path, DWORD attributes, int level)
 {
-	std::lock_guard<std::mutex> lock(dirsByLevelMtx_);
+    std::lock_guard<std::mutex> lock(dirsByLevelMtx_);
 
     if (dirsByLevel_.find(level) == dirsByLevel_.end())
     {
         dirsByLevel_[level] = std::vector<FileEntry>();
     }
 
-	dirsByLevel_[level].push_back(FileEntry{ path, attributes });
+    dirsByLevel_[level].push_back(FileEntry{ path, attributes });
 }
 
 void ParallelTraversalBfs::EnqueueDir(const std::wstring& path, int level)

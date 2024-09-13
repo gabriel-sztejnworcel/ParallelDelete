@@ -3,13 +3,13 @@
 
 DeleteResult ParallelDelete::Delete(const TraverseResult& traverseResult, int nworkers, bool suppressErrors)
 {
-	suppressErrors_ = suppressErrors;
-    
+    suppressErrors_ = suppressErrors;
+
     this->DeleteFilesInParallel(traverseResult.files, nworkers);
 
     for (auto it = traverseResult.dirsByLevel.rbegin(); it != traverseResult.dirsByLevel.rend(); ++it)
     {
-		this->DeleteFilesInParallel(it->second, nworkers);
+        this->DeleteFilesInParallel(it->second, nworkers);
     }
 
     return DeleteResult{ filesDeleted_, dirsDeleted_, failesFailed_, dirFailed_ };

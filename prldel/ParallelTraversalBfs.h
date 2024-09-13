@@ -9,7 +9,7 @@
 
 struct FileEntry
 {
-	std::wstring path;
+    std::wstring path;
     DWORD attributes;
 };
 
@@ -21,7 +21,7 @@ struct DirQueueEntry
 
 struct TraverseResult
 {
-	std::vector<FileEntry> files;
+    std::vector<FileEntry> files;
     std::map<int, std::vector<FileEntry>> dirsByLevel;
 };
 
