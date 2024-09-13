@@ -12,7 +12,7 @@ DeleteResult ParallelDelete::Delete(const TraverseResult& traverseResult, int nw
         this->DeleteFilesInParallel(it->second, nworkers);
     }
 
-    return DeleteResult{ filesDeleted_, dirsDeleted_, failesFailed_, dirFailed_ };
+    return DeleteResult{ filesDeleted_, dirsDeleted_, filesFailed_, dirFailed_ };
 }
 
 void ParallelDelete::DeleteFilesInParallel(const std::vector<FileEntry>& files, int nworkers)
@@ -107,7 +107,7 @@ void ParallelDelete::DeleteFiles(const std::vector<FileEntry>& files, int nworke
                     wprintf(L"Failed to delete file (%s, %d)\n", fileEntry.path.c_str(), GetLastError());
                 }
 
-                ++failesFailed_;
+                ++filesFailed_;
             }
         }
     }

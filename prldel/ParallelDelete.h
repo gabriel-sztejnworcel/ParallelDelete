@@ -22,6 +22,6 @@ private:
     bool suppressErrors_ = false;
     std::atomic<int> filesDeleted_ = 0;
     std::atomic<int> dirsDeleted_ = 0;
-    std::atomic<int> failesFailed_ = 0;
+    std::atomic<int> filesFailed_ = 0;
     std::atomic<int> dirFailed_ = 0;
 };
