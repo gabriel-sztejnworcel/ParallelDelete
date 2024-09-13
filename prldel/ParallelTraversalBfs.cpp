@@ -34,7 +34,12 @@ TraverseResult ParallelTraversalBfs::Traverse(const std::wstring& root, int nwor
     if (evt_ == nullptr)
     {
         evt_ = CreateEvent(nullptr, TRUE, FALSE, nullptr);
-        assert(evt_ != nullptr);
+
+        if (evt_ == nullptr)
+        {
+            wprintf(L"CreateEvent failed (%d)\n", GetLastError());
+            return TraverseResult{ std::move(files_), std::move(dirsByLevel_) };
+        }
     }
 
     std::vector<std::thread> workers;
@@ -82,7 +87,11 @@ void ParallelTraversalBfs::Worker()
         }
         else
         {
-            WaitForSingleObject(evt_, INFINITE);
+            if (WaitForSingleObject(evt_, INFINITE) == WAIT_FAILED)
+            {
+                wprintf(L"WaitForSingleObject failed (%d)\n", GetLastError());
+                return;
+            }
         }
     }
 }
@@ -93,7 +102,11 @@ void ParallelTraversalBfs::ProcessDir(const std::wstring& path, int level)
     WIN32_FIND_DATAW findFileData;
 
     HANDLE findHandle = FindFirstFileW(searchPath.c_str(), &findFileData);
-    assert(findHandle != INVALID_HANDLE_VALUE);
+    if (findHandle == INVALID_HANDLE_VALUE)
+    {
+        wprintf(L"Failed to enumerate files (%s, %d)\n", path.c_str(), GetLastError());
+        return;
+    }
 
     do {
         const std::wstring fileOrDir = findFileData.cFileName;
@@ -101,7 +114,11 @@ void ParallelTraversalBfs::ProcessDir(const std::wstring& path, int level)
         {
             std::wstring fullPath = path + L"\\" + fileOrDir;
 
-            if (findFileData.dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY)
+            if (findFileData.dwFileAttributes & FILE_ATTRIBUTE_REPARSE_POINT)
+            {
+                this->AddFileResult(fullPath, findFileData.dwFileAttributes);
+            }
+            else if (findFileData.dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY)
             {
                 this->AddDirResult(fullPath, findFileData.dwFileAttributes, level + 1);
                 this->EnqueueDir(fullPath, level + 1);
@@ -114,7 +131,7 @@ void ParallelTraversalBfs::ProcessDir(const std::wstring& path, int level)
     } while (FindNextFileW(findHandle, &findFileData) != 0);
 
     FindClose(findHandle);
-    SetEvent(evt_);
+    SetEvent(evt_); // TODO: Error handling
 }
 
 void ParallelTraversalBfs::AddFileResult(const std::wstring& path, DWORD attributes)
