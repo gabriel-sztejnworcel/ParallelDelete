@@ -1,6 +1,3 @@
-// TODO:
-// - Error handling
-// - Tests/Benchmark
 
 #include <iostream>
 #include <thread>
