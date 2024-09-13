@@ -1,19 +1,19 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="Current" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <LocalDebuggerCommandArguments>--path \\172.24.18.147\c$\Users\gadmin --num-workers 100</LocalDebuggerCommandArguments>
+    <LocalDebuggerCommandArguments>--path \\172.24.18.147\c$\Users\gadmin2 --num-workers 70</LocalDebuggerCommandArguments>
     <DebuggerFlavor>WindowsLocalDebugger</DebuggerFlavor>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-    <LocalDebuggerCommandArguments>--path \\172.24.18.147\c$\Users\gadmin --num-workers 100</LocalDebuggerCommandArguments>
+    <LocalDebuggerCommandArguments>--path \\172.24.18.147\c$\Users\gadmin2 --num-workers 70</LocalDebuggerCommandArguments>
     <DebuggerFlavor>WindowsLocalDebugger</DebuggerFlavor>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <LocalDebuggerCommandArguments>--path \\172.24.18.147\c$\Users\gadmin --num-workers 100</LocalDebuggerCommandArguments>
+    <LocalDebuggerCommandArguments>--path \\172.24.18.147\c$\Users\gadmin2 --num-workers 70</LocalDebuggerCommandArguments>
     <DebuggerFlavor>WindowsLocalDebugger</DebuggerFlavor>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
-    <LocalDebuggerCommandArguments>--path \\172.24.18.147\c$\Users\gadmin --num-workers 100</LocalDebuggerCommandArguments>
+    <LocalDebuggerCommandArguments>--path \\172.24.18.147\c$\Users\gadmin2 --num-workers 70</LocalDebuggerCommandArguments>
     <DebuggerFlavor>WindowsLocalDebugger</DebuggerFlavor>
   </PropertyGroup>
 </Project>
