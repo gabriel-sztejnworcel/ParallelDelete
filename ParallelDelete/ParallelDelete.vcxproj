@@ -22,8 +22,9 @@
     <VCProjectVersion>17.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
     <ProjectGuid>{76465140-519d-4ca2-8b78-1737fc374bd7}</ProjectGuid>
-    <RootNamespace>prldel</RootNamespace>
+    <RootNamespace>ParallelDelete</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
+    <ProjectName>ParallelDelete</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -129,7 +130,7 @@
   <ItemGroup>
     <ClCompile Include="ParallelDelete.cpp" />
     <ClCompile Include="ParallelTraversalBfs.cpp" />
-    <ClCompile Include="prldel.cpp" />
+    <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ParallelDelete.h" />

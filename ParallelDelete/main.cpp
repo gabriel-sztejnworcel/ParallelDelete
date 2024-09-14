@@ -9,7 +9,7 @@
 
 void PrintUsage()
 {
-    wprintf(L"Usage: prldel.exe --path <directory_path> --num-workers <number_of_worker_threads>\n");
+    wprintf(L"Usage: ParallelDelete.exe --path <directory_path> --num-workers <number_of_worker_threads>\n");
 }
 
 int wmain(int argc, wchar_t* argv[])

@@ -32,6 +32,6 @@
 *.app
 
 # Manually added
-prldel/.vs/
-prldel/prldel/
-prldel/x64/
+ParallelDelete/.vs/
+ParallelDelete/ParallelDelete/
+ParallelDelete/x64/
