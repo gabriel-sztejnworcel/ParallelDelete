@@ -1,5 +1,5 @@
 # ParallelDelete
-#### Parallel delete of Windows directories
+#### Delete Windows directories in parallel for slow SMB connections
 Deleting a complex directory structure in Windows can take a very long time, especially over a slow SMB connection. This tool provides the ability to delete directories in parallel using multiple worker threads, which could be almost 50 times faster. For example, deleting a standard user profile over SMB with latency of 60ms took 16 minutes using built-in Windows commands, while using this tool it only took 20 seconds.
 ### How does it work?
 The process is divided to 2 steps:
